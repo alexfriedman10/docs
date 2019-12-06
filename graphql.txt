@@ -1,0 +1,91 @@
+{
+  serviceProviders(filter:{
+    name:"The Oyster Shed"
+  }){
+    content{
+      rows{
+        id
+        name
+        location{
+          id
+          countryCode
+          description
+        }
+      }
+    }
+  }
+}
+
+*********************************************
+
+
+{
+  expenses(list: {limit: 1}, filter:{
+    vatStatuses:[READY_FOR_CLAIM]
+  }) {
+   content {
+    count
+    rows {
+      id
+      amount
+      currency{
+    	symbol
+      }
+    }
+  } 
+  }
+  
+}
+
+
+*******************************
+{
+  users(filter: { emails: ["alex1@way2vat.com"] }) {
+    content {
+      rows {
+        id
+        email
+        usersGroups {
+          id
+          group {
+            name
+          }
+          usersGroupsRoles {
+            id
+            role {
+              type
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+******************************
+mutation {
+  addUserGroupRole(
+    input: {
+      usersGroupId: "fae08831-b107-4d42-8fe8-4f9c8575b9f0"
+      groupsRoleId: "af1175d5-2af8-4abb-a1c6-efd8fa9eb346"
+    }
+  ) {
+    id
+    role {
+      type
+    }
+    enabled
+  }
+}
+****************************
+{
+  groups(filter:{names:["WAY2VAT"]}){
+    rows{
+      groupsRoles{
+        id
+        role{  type  }
+      }
+    }
+  }
+}
+***********************************
